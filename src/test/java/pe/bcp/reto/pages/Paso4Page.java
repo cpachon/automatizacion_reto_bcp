@@ -39,7 +39,6 @@ public class Paso4Page extends PageWeb {
 
     public void terminarCompra () {
 
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.findElement(tipoPago).click();
         driver.findElement(agree).click();
         driver.findElement(clickEnterCard);

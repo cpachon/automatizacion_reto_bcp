@@ -5,6 +5,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.relevantcodes.extentreports.ExtentTest;
 
+import java.time.Duration;
+
 public abstract class PageWeb {
 	// atributos
 	protected WebDriver driver;

@@ -53,7 +53,6 @@ public class Paso2Page extends PageWeb {
 
     public void cabinaDoble (String tipoCabina, String subDir)
     {
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         Select cabins = new Select(driver.findElement(dobleCabina));
         cabins.selectByVisibleText(tipoCabina);
         Helper.addEvidence(TAKE_SS, driver, test, "Menu Busqueda Viaje", subDir, "cabinaDoble_01");
@@ -61,7 +60,6 @@ public class Paso2Page extends PageWeb {
 
     public void cabinaSuite (String selecCabina, String subDir)
     {
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         Select cabins = new Select(driver.findElement(suiteCabina));
         cabins.selectByVisibleText(selecCabina);
         Helper.addEvidence(TAKE_SS, driver, test, "Menu Busqueda Viaje", subDir, "cabinaSuite_01");
@@ -98,13 +96,13 @@ public class Paso2Page extends PageWeb {
     }
 
     public void assertDisponibilidadCab(String subDir) {
-        Helper.waitSeconds(15);
+
         Helper.addEvidence(TAKE_SS, driver, test, "Menu Busqueda Viaje", subDir, "assertDisponibilidadCab_01");
         Assert.assertTrue(driver.findElement(validarCabinasSuite).isDisplayed());
-        Helper.waitSeconds(15);
+
         Helper.addEvidence(TAKE_SS, driver, test, "Menu Busqueda Viaje", subDir, "assertDisponibilidadCab_02");
         Assert.assertTrue(driver.findElement(validarCabinaDoble).isDisplayed());
-        Helper.waitSeconds(15);
+
         Helper.addEvidence(TAKE_SS, driver, test, "Menu Busqueda Viaje", subDir, "assertDisponibilidadCab_03");
         Assert.assertTrue(driver.findElement(validarCabinaLitera).isDisplayed());
 

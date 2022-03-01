@@ -107,7 +107,7 @@ public class Paso3Page extends PageWeb {
         // Metodos
 
     public void datosBasicosPasajero1 (String nombre, String apellido, String subDir) {
-            driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+
             // Registro pasajero 1
             driver.findElement(nomPas1).sendKeys(nombre);
             driver.findElement(apePas1).sendKeys(apellido);
@@ -188,7 +188,7 @@ public class Paso3Page extends PageWeb {
     ////
 
     public void datosBasicosPasajero1Cab1 (String nom, String ape) {
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+
         // Registro pasajero 1
         driver.findElement(nomPasCab1).sendKeys(nom);
         driver.findElement(apePasCab1).sendKeys(ape);
