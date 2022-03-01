@@ -17,10 +17,10 @@ public class Paso4Page extends PageWeb {
 
     // Atributos
     private By tipoPago;
-    private By agree;
     private By resumen;
     private By clickEnterCard;
     private By validarResumen;
+    private By validarResumenRuta3;
 
 
     // Constructor
@@ -28,10 +28,10 @@ public class Paso4Page extends PageWeb {
         super(driver, test, TAKE_SS, seconds);
 
         this.tipoPago = By.id("mastercard");
-        this.agree = By.name("tipo-manera");
         this.clickEnterCard = By.id("ingresar_tarjeta");
         this.resumen = By.xpath("//a[@click='0'][contains(.,'purchase summary')]");
         this.validarResumen = By.xpath("//div[contains(@class,'cabecera-compra')]");
+        this.validarResumenRuta3 = By.xpath("//div[@class='cabecera-compra'][contains(.,'Outbound Journey:')]");
 
     }
 
@@ -40,9 +40,14 @@ public class Paso4Page extends PageWeb {
     public void terminarCompra () {
 
         driver.findElement(tipoPago).click();
-        driver.findElement(agree).click();
+    }
+
+    public void clickTarjeta (){
         driver.findElement(clickEnterCard);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+
+    }
+    public void verResumen () {
         driver.findElement(resumen).click();
     }
 
@@ -53,6 +58,12 @@ public class Paso4Page extends PageWeb {
 
     }
 
+    public void assertResumen(String subDir) {
+
+        Helper.addEvidence(TAKE_SS, driver, test, "Menu Busqueda Viaje", subDir, "assertResumen_01");
+        Assert.assertTrue(driver.findElement(validarResumenRuta3).isDisplayed());
+
+    }
 
 
 }

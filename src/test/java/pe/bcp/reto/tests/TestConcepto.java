@@ -19,10 +19,7 @@ import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
 import pe.bcp.reto.helpers.Helper;
-import pe.bcp.reto.pages.PaginaPrincipalPage;
-import pe.bcp.reto.pages.Paso2Page;
-import pe.bcp.reto.pages.Paso3Page;
-import pe.bcp.reto.pages.Paso4Page;
+import pe.bcp.reto.pages.*;
 
 
 public class TestConcepto {
@@ -64,7 +61,9 @@ public class TestConcepto {
 		test = extent.startTest("Prueba CONCEPTO más", "Probando conceptos MáS.");
 		test.log(LogStatus.INFO, "Prueba inicial conceptos");
 		PaginaPrincipalPage buscar = new PaginaPrincipalPage(driver, test, TAKE_SS, 15);
-		buscar.ingresoRutas("Cusco", "Puno > Cusco", "Andean Explorer, A Belmond Train", subDir);
+		buscar.seleccionarViaje(subDir);
+		buscar.ingresoRutas("Cusco", "Puno > Cusco");
+		buscar.seleccionarTren("Andean Explorer, A Belmond Train", subDir);
 		buscar.seleccionarCalendario();
 		buscar.buscarMes();
 		buscar.buscarDia();
@@ -83,6 +82,8 @@ public class TestConcepto {
 		paso3.clickContinuarPaso3();
 		Paso4Page paso4 = new Paso4Page(driver, test, TAKE_SS, 15);
 		paso4.terminarCompra();
+		paso4.clickTarjeta();
+		paso4.verResumen();
 		paso4.assertIngreso(subDir);
 
 	}
@@ -93,7 +94,9 @@ public class TestConcepto {
 		test = extent.startTest("Prueba CONCEPTO más", "Probando conceptos MáS.");
 		test.log(LogStatus.INFO, "Prueba inicial conceptos");
 		PaginaPrincipalPage buscar = new PaginaPrincipalPage(driver, test, TAKE_SS, 15);
-		buscar.ingresoRutas("Cusco", "Puno > Cusco", "Andean Explorer, A Belmond Train", subDir);
+		buscar.seleccionarViaje(subDir);
+		buscar.ingresoRutas("Cusco", "Puno > Cusco");
+		buscar.seleccionarTren("Andean Explorer, A Belmond Train", subDir);
 		buscar.seleccionarCalendario();
 		buscar.buscarMes();
 		buscar.buscarDia();
@@ -109,7 +112,9 @@ public class TestConcepto {
 		test = extent.startTest("Prueba CONCEPTO más", "Probando conceptos MáS.");
 		test.log(LogStatus.INFO, "Prueba inicial conceptos");
 		PaginaPrincipalPage buscar = new PaginaPrincipalPage(driver, test, TAKE_SS, 15);
-		buscar.ingresoRutas("Cusco", "Puno > Cusco", "Andean Explorer, A Belmond Train", subDir);
+		buscar.seleccionarViaje(subDir);
+		buscar.ingresoRutas("Cusco", "Puno > Cusco");
+		buscar.seleccionarTren("Andean Explorer, A Belmond Train", subDir);
 		buscar.seleccionarCalendario();
 		buscar.diasSinCabinas();
 		buscar.clickBuscarViaje(subDir);
@@ -123,7 +128,9 @@ public class TestConcepto {
 		test = extent.startTest("Prueba CONCEPTO más", "Probando conceptos MáS.");
 		test.log(LogStatus.INFO, "Prueba inicial conceptos");
 		PaginaPrincipalPage buscar = new PaginaPrincipalPage(driver, test, TAKE_SS, 15);
-		buscar.ingresoRutas("Cusco", "Arequipa > Puno > Cusco", "Andean Explorer, A Belmond Train", subDir);
+		buscar.seleccionarViaje(subDir);
+		buscar.ingresoRutas("Cusco", "Arequipa > Puno > Cusco");
+		buscar.seleccionarTren("Andean Explorer, A Belmond Train", subDir);
 		buscar.seleccionarCalendario();
 		buscar.fechaRuta2(subDir);
 		buscar.clickBuscarViaje(subDir);
@@ -138,9 +145,40 @@ public class TestConcepto {
 		paso3.clickContinuarPaso3();
 		Paso4Page paso4 = new Paso4Page(driver, test, TAKE_SS, 15);
 		paso4.terminarCompra();
+		paso4.clickTarjeta();
+		paso4.verResumen();
 		paso4.assertIngreso(subDir);
 
 	}
+
+	@Test
+	public void Ruta3() {
+		String subDir = SUBDIR + Thread.currentThread().getStackTrace()[1].getMethodName();
+		test = extent.startTest("Prueba CONCEPTO más", "Probando conceptos MáS.");
+		test.log(LogStatus.INFO, "Prueba inicial conceptos");
+		PaginaPrincipalPage buscar = new PaginaPrincipalPage(driver, test, TAKE_SS, 15);
+		buscar.ingresoRutas("Machu Picchu", "Cusco > Machu Picchu");
+		buscar.seleccionarCalendario();
+		buscar.buscarDiaIdayVuelta();
+		buscar.seleccionarPasajeros();
+		buscar.seleccionarPassRuta3();
+		buscar.clickBuscarViaje(subDir);
+		Paso2MachuPicchuPage paso2 = new Paso2MachuPicchuPage(driver, test, TAKE_SS, 15);
+		paso2.escogerIda(subDir);
+		paso2.escogerRegreso(subDir);
+		paso2.clickContinuarPaso3(subDir);
+		Paso3MachuPicchuPage paso3 = new Paso3MachuPicchuPage(driver, test, TAKE_SS, 15);
+		paso3.datosBasicosPass("Julio", "Perez", subDir);
+		paso3.fechaPass();
+		paso3.datosPass("Argentina", "Identification Card", "43251826", "Male", "0987009", "correo1@ejemplo.com", "correo1@ejemplo.com", subDir);
+		paso3.clickNovedades(subDir);
+		paso3.clickPaso(subDir);
+		Paso4Page paso4 = new Paso4Page(driver, test, TAKE_SS, 15);
+		paso4.terminarCompra();
+		paso4.assertResumen(subDir);
+
+	}
+
 
 
 

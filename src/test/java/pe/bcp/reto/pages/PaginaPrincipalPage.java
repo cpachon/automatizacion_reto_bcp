@@ -21,8 +21,9 @@ public class PaginaPrincipalPage extends PageWeb {
     private By tren;
     private By fchaida;
     private By nextmes;
- //   private By fchavuelta;
- //   private By cantPasajeros;
+    private By fchavuelta;
+    private By cantPassAdulRuta3;
+    private By cantPassRuta3;
     private By clickBuscar;
 
 
@@ -36,28 +37,33 @@ public class PaginaPrincipalPage extends PageWeb {
         this.tren = By.id("cbTrenSelect");
         this.fchaida = By.name("salida");
         this.nextmes = By.xpath("//span[contains(.,'Next')]");
-       // this.fchavuelta = ;
-      //  this.cantPasajeros = ;
+        this.fchavuelta = By.name("regreso");
+        this.cantPassRuta3 = By.id("countParentsChildren");
+        this.cantPassAdulRuta3 = By.id("adultsDism");
         this.clickBuscar = By.id("btn_search");
     }
     // Metodos
 
-    public void ingresoRutas (String lugarDestino, String rutaViaje, String tipoTren , String subDir)
-    {
+
+    public void seleccionarViaje (String subDir) {
         Helper.addEvidence(TAKE_SS, driver, test, "Menu Busqueda Viaje", subDir, "ingresoRutas_01");
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(oneWay))).click();
 
+    }
+    public void ingresoRutas (String lugarDestino, String rutaViaje) {
         Select destination = new Select(driver.findElement(destino));
         destination.selectByVisibleText(lugarDestino);
 
         Select route = new Select(driver.findElement(ruta));
         route.selectByVisibleText(rutaViaje);
 
+    }
+
+    public void seleccionarTren (String tipoTren , String subDir) {
         Select train = new Select(driver.findElement(tren));
         train.selectByVisibleText(tipoTren);
 
         Helper.addEvidence(TAKE_SS, driver, test, "Menu Busqueda Viaje", subDir, "ingresoRutas_02");
-
 
     }
 
@@ -74,6 +80,28 @@ public class PaginaPrincipalPage extends PageWeb {
 
         String frdate ="27";
         driver.findElement(By.xpath("//td[not(contains(@class,'ui−datepicker− month'))]/a[text()='"+frdate+"']")).click();
+
+    }
+
+    public void buscarDiaIdayVuelta () {
+
+        String frdate ="20";
+        driver.findElement(By.xpath("//td[not(contains(@class,'ui−datepicker− month'))]/a[text()='"+frdate+"']")).click();
+        driver.findElement(fchavuelta).click();
+        String frdate1 ="20";
+        driver.findElement(By.xpath("//td[not(contains(@class,'ui−datepicker− month'))]/a[text()='"+frdate1+"']")).click();
+
+    }
+
+    public void seleccionarPasajeros (){
+        driver.findElement(cantPassRuta3).click();
+
+    }
+
+    public void seleccionarPassRuta3 () {
+
+        driver.findElement(cantPassAdulRuta3).click();
+
 
     }
 

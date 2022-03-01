@@ -2,7 +2,6 @@ package pe.bcp.reto.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.relevantcodes.extentreports.ExtentTest;
 
@@ -11,7 +10,6 @@ import org.testng.Assert;
 import pe.bcp.reto.helpers.Helper;
 import pe.bcp.reto.helpers.PageWeb;
 
-import java.util.concurrent.TimeUnit;
 
 public class Paso2Page extends PageWeb {
     // Atributos
