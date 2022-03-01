@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Automation_Concepts_Project">
+
+
+	<test name="TestBase">
+		<classes>
+			<class name="pe.bcp.reto.tests.TestConcepto">
+				<methods>
+					<include name="Ruta1" />
+					<include name="MaximoPasajero" />
+					<include name="disponibilidadCabina" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>
